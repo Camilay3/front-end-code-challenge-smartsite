@@ -8,30 +8,34 @@
 	--green: #2FC022;
 }
 
+h1, h2, p {
+	font-family: 'Gotham', serif;
+}
+
 @font-face {
 	font-family: 'Gotham';
-	src: url('../_material/fonts/gotham-light.woff2') format('truetype');
+	src: url('/fonts/gotham-light.woff2') format('truetype');
 	font-weight: 300;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Gotham';
-	src: url('../_material/fonts/gotham-book.woff2') format('truetype');
+	src: url('/fonts/gotham-book.woff2') format('truetype');
 	font-weight: 500;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Gotham';
-	src: url('../_material/fonts/gotham-bold.woff2') format('truetype');
+	src: url('/fonts/gotham-bold.woff2') format('truetype');
 	font-weight: 700;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'Gotham';
-	src: url('../_material/fonts/gotham-black.woff2') format('truetype');
+	src: url('/fonts/gotham-black.woff2') format('truetype');
 	font-weight: 900;
 	font-style: normal;
 }
