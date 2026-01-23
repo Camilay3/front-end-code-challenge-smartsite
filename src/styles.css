@@ -8,7 +8,7 @@
 	--green: #2FC022;
 }
 
-h1, h2, p {
+h1, h2, p, label, span {
 	font-family: 'Gotham', serif;
 }
 
