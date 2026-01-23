@@ -1,4 +1,4 @@
-<form [formGroup]="formGroup" class="border-3 border-neutral-200 rounded-xl p-6 gap-8 flex flex-col">
+<form [formGroup]="formGroup" class="border-4 border-neutral-200 rounded-xl p-6 gap-8 flex flex-col">
 	<span class="flex gap-2 text-neutral-400 items-center">
 		<img class="w-8" src="/images/icon-hour.png" alt="Relógio">
 		Horário
@@ -31,7 +31,7 @@
 
 			<span class="flex gap-2 items-center">Resultados encontrados:
 				@if (resultadosFiltrados) {
-					<b>{{resultadosFiltrados.length}}</b>
+					<b class="text-xl">{{resultadosFiltrados.length}}</b>
 				} @else {
 					<span class="loader w-4 h-4 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></span>
 				}

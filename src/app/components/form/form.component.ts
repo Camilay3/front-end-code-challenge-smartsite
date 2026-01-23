@@ -33,6 +33,8 @@ export class FormComponent implements OnInit {
 					this.resultados = value.locations;
 					this.resultadosFiltrados = this.resultados.filter(local => local.opened);
 
+					console.log(this.resultados.length)
+
 					this.cdr.detectChanges();
 				},
 				error: (err) => console.error(err),
@@ -48,5 +50,8 @@ export class FormComponent implements OnInit {
 		this.resultadosFiltrados = (this.formGroup.value.unidadesFechadas) ? this.resultados : this.resultados.filter(local => local.opened);
 	}
 
-	onClean() { this.formGroup.reset() }
+	onClean() {
+		this.resultadosFiltrados = this.resultados.filter(local => local.opened);
+		this.formGroup.reset();
+	}
 }
