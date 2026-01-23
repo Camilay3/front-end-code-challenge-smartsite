@@ -1,15 +1,5 @@
 import { Component } from '@angular/core';
-
-interface IObjetos {
-	src: string,
-	alt: string,
-	descricao: string
-}
-
-interface ILegenda {
-	titulo: string,
-	conteudo: IObjetos[]
-}
+import { ILegenda } from '../../interfaces/ILegenda';
 
 @Component({
   selector: 'app-legends',
