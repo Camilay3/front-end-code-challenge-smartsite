@@ -32,22 +32,49 @@ export class FormComponent implements OnInit {
 				next: (value) => {
 					this.resultados = value.locations;
 					this.resultadosFiltrados = this.resultados.filter(local => local.opened);
-
-					console.log(this.resultados.length)
-
 					this.cdr.detectChanges();
 				},
 				error: (err) => console.error(err),
 			})
 
 		this.formGroup = this.formBuilder.group({
-			turno: '',
+			turno: null,
 			unidadesFechadas: false
 		})
 	}
 
+	daysOfWeek: string[] = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+	/* Unidades 17 e 122 tem weekdays alterados
+		{ weekdays: "Obs.:", hour: "Obrigatório o uso de luvas descartáveis." }
+		{ weekdays: "Obs.:", hour: "*Unidade fechará de 1h em 1h para limpeza." }
+	*/
+
+	aplicarFiltroPorDia(data: Date) {
+		const indexToday = data.getDay();
+		const today = this.daysOfWeek[indexToday];
+
+		this.resultadosFiltrados = this.resultadosFiltrados?.filter(local => {
+    		return local.schedules.some(s => {
+				if (s.hour === 'Fechada') return false;
+
+				const [inicio, fim] = s.weekdays.split(/ à | às /);
+				const indexInicio = this.daysOfWeek.indexOf(inicio.slice(0, 3));
+				const indexFim = this.daysOfWeek.indexOf(fim?.slice(0, 3));
+
+				if (indexToday === -1 || indexInicio === -1) return false;
+				if (!fim) return today === this.daysOfWeek[indexInicio];
+
+				return indexToday >= indexInicio && indexToday <= indexFim;
+			});
+		});
+	}
+
 	onSubmit() {
 		this.resultadosFiltrados = (this.formGroup.value.unidadesFechadas) ? this.resultados : this.resultados.filter(local => local.opened);
+
+		let data = new Date();
+		this.aplicarFiltroPorDia(data);
+		// if (this.formGroup.value.turno) this.aplicarFiltroPorHoraSelecionada(data);
 	}
 
 	onClean() {
