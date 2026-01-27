@@ -4,8 +4,9 @@
 
 <main class="w-[50%] m-auto my-20 flex flex-col gap-10">
 	<app-header></app-header>
-	<app-form></app-form>
+	<app-form (outputResultados)="outputResultados = $event"></app-form>
 	<app-legends></app-legends>
+	<app-cards [results]="outputResultados"></app-cards>
 </main>
 
 <footer class="bg-neutral-700 w-full p-12 pb-20 gap-4 flex flex-col justify-center items-center">

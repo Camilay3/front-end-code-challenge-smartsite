@@ -1,5 +1,5 @@
 import { UnidadesService } from './../../services/unidades.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IHorario } from '../../interfaces/IHorario';
 import { ILocal } from '../../interfaces/IUnidade';
@@ -11,6 +11,7 @@ import { ILocal } from '../../interfaces/IUnidade';
 //   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+	@Output() outputResultados = new EventEmitter<ILocal[]>();
 	formGroup!: FormGroup;
 	resultados: ILocal[] = [];
 	resultadosFiltrados: ILocal[] | undefined;
@@ -94,6 +95,7 @@ export class FormComponent implements OnInit {
 				return this.horarioBateComTurno(s.hour, turnoSelecionado);
 			});
 		});
+		this.outputResultados.emit(this.resultadosFiltrados);
 	}
 
 	onSubmit() {
