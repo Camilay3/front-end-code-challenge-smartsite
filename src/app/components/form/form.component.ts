@@ -5,10 +5,9 @@ import { IHorario } from '../../interfaces/IHorario';
 import { ILocal } from '../../interfaces/IUnidade';
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  imports: [ ReactiveFormsModule ],
-//   styleUrls: ['./form.component.css']
+	selector: 'app-form',
+	templateUrl: './form.component.html',
+	imports: [ ReactiveFormsModule ],
 })
 export class FormComponent implements OnInit {
 	@Output() outputResultados = new EventEmitter<ILocal[]>();
@@ -47,10 +46,6 @@ export class FormComponent implements OnInit {
 	}
 
 	daysOfWeek: string[] = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-	/* Unidades 17 e 122 tem weekdays alterados
-		{ weekdays: "Obs.:", hour: "Obrigatório o uso de luvas descartáveis." }
-		{ weekdays: "Obs.:", hour: "*Unidade fechará de 1h em 1h para limpeza." }
-	*/
 
 	private horaParaMinutos(hora: string): number {
 		const [h, m] = hora.replace('h', ':').split(':');
