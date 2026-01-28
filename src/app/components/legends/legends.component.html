@@ -5,7 +5,7 @@
 			<div class="images flex gap-2">
 				@for (img of item.conteudo; track $index) {
 					<div class="desc flex flex-col items-center justify-center">
-						<img class="w-15" draggable="false" [src]="'/images/' + img.src" alt={{img.alt}}>
+						<img class="w-15" draggable="false" [src]="'./images/' + img.src" alt={{img.alt}}>
 						<p>{{img.descricao}}</p>
 					</div>
 				}
