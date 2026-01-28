@@ -15,10 +15,10 @@
 						@let fountain = getLegend('fountain', item.fountain);
 						@let locker = getLegend('locker_room', item.locker_room);
 
-						<img class="w-15" draggable="false" [src]="'./images/' + mask?.src" [alt]="mask?.alt"/>
-						<img class="w-15" draggable="false" [src]="'./images/' + towel?.src" [alt]="towel?.alt"/>
-						<img class="w-15" draggable="false" [src]="'./images/' + fountain?.src" [alt]="fountain?.alt"/>
-						<img class="w-15" draggable="false" [src]="'./images/' + locker?.src" [alt]="locker?.alt"/>
+						<img class="w-full" draggable="false" [src]="'./images/' + mask?.src" [alt]="mask?.alt"/>
+						<img class="w-full" draggable="false" [src]="'./images/' + towel?.src" [alt]="towel?.alt"/>
+						<img class="w-full" draggable="false" [src]="'./images/' + fountain?.src" [alt]="fountain?.alt"/>
+						<img class="w-full" draggable="false" [src]="'./images/' + locker?.src" [alt]="locker?.alt"/>
 					</div>
 
 					<div class="horarios grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
@@ -26,7 +26,7 @@
 							<div class="hour" [ngClass]="{
 								'col-span-2': $index === item.schedules.length - 1 && item.schedules.length % 2 !== 0
 							}">
-								<p class="font-bold">{{ hour.weekdays }}</p>
+								<p class="text-2xl font-bold text-neutral-700">{{ hour.weekdays }}</p>
 								<p>{{ hour.hour }}</p>
 							</div>
 						}

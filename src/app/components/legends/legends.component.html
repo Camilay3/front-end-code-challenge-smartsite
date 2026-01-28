@@ -2,10 +2,10 @@
 	@for (item of items; track $index) {
 		<div class="items flex flex-col gap-2 items-center justify-center">
 			<h1 class="text-lg font-bold">{{item.titulo}}</h1>
-			<div class="images flex gap-2">
+			<div class="images flex gap-4">
 				@for (img of item.conteudo; track $index) {
 					<div class="desc flex flex-col items-center justify-center">
-						<img class="w-15" draggable="false" [src]="'./images/' + img.src" alt={{img.alt}}>
+						<img class="w-20" draggable="false" [src]="'./images/' + img.src" alt={{img.alt}}>
 						<p>{{img.descricao}}</p>
 					</div>
 				}
