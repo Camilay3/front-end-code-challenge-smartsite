@@ -100,6 +100,7 @@ export class FormComponent implements OnInit {
 
 	onClean() {
 		this.resultadosFiltrados = this.resultados.filter(local => local.opened);
+		this.outputResultados.emit(this.resultadosFiltrados);
 		this.formGroup.reset();
 	}
 }

@@ -1,39 +1,46 @@
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-	@for (item of results; track $index) {
-		<div class="card bg-neutral-100 flex flex-col rounded-xl shadow-[0_0_8px_rgba(0,0,0,0.1)] border-1 border-neutral-300 p-4 gap-2 min-h-[200px]">
-			<span class="font-bold" [ngClass]="item.opened ? 'text-green-500' : 'text-red-500'">{{ item.opened ? 'Aberto' : 'Fechado' }}</span>
-			<h1 class="text-3xl font-bold text-neutral-700 mb-2">{{ item.title }}</h1>
-			<p [innerHTML]="item.content"></p>
+@if (results.length) {
+	<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		@for (item of results; track $index) {
+			<div class="card bg-neutral-100 flex flex-col rounded-xl shadow-[0_0_8px_rgba(0,0,0,0.1)] border-1 border-neutral-300 p-4 gap-2 min-h-[200px]">
+				<span class="font-bold" [ngClass]="item.opened ? 'text-green-500' : 'text-red-500'">{{ item.opened ? 'Aberto' : 'Fechado' }}</span>
+				<h1 class="text-3xl font-bold text-neutral-700 mb-2">{{ item.title }}</h1>
+				<p [innerHTML]="item.content"></p>
 
-			@if (item.opened) {
-				<div class="description flex flex-col gap-4">
-					<hr class="border-neutral-200 border-t-2">
+				@if (item.opened) {
+					<div class="description flex flex-col gap-4">
+						<hr class="border-neutral-200 border-t-2">
 
-					<div class="imagens flex gap-2 items-center justify-center">
-						@let mask = getLegend('mask', item.mask);
-						@let towel = getLegend('towel', item.towel);
-						@let fountain = getLegend('fountain', item.fountain);
-						@let locker = getLegend('locker_room', item.locker_room);
+						<div class="imagens flex gap-2 items-center justify-center">
+							@let mask = getLegend('mask', item.mask);
+							@let towel = getLegend('towel', item.towel);
+							@let fountain = getLegend('fountain', item.fountain);
+							@let locker = getLegend('locker_room', item.locker_room);
 
-						<img class="w-full" draggable="false" [src]="'./images/' + mask?.src" [alt]="mask?.alt"/>
-						<img class="w-full" draggable="false" [src]="'./images/' + towel?.src" [alt]="towel?.alt"/>
-						<img class="w-full" draggable="false" [src]="'./images/' + fountain?.src" [alt]="fountain?.alt"/>
-						<img class="w-full" draggable="false" [src]="'./images/' + locker?.src" [alt]="locker?.alt"/>
+							<img class="w-full" draggable="false" [src]="'./images/' + mask?.src" [alt]="mask?.alt"/>
+							<img class="w-full" draggable="false" [src]="'./images/' + towel?.src" [alt]="towel?.alt"/>
+							<img class="w-full" draggable="false" [src]="'./images/' + fountain?.src" [alt]="fountain?.alt"/>
+							<img class="w-full" draggable="false" [src]="'./images/' + locker?.src" [alt]="locker?.alt"/>
+						</div>
+
+						<div class="horarios grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
+							@for (hour of item.schedules; track $index) {
+								<div class="hour" [ngClass]="{
+									'col-span-2': $index === item.schedules.length - 1 && item.schedules.length % 2 !== 0
+								}">
+									<p class="text-2xl font-bold text-neutral-700">{{ hour.weekdays }}</p>
+									<p>{{ hour.hour }}</p>
+								</div>
+							}
+						</div>
+
 					</div>
+				}
+			</div>
+		}
+	</section>
 
-					<div class="horarios grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
-						@for (hour of item.schedules; track $index) {
-							<div class="hour" [ngClass]="{
-								'col-span-2': $index === item.schedules.length - 1 && item.schedules.length % 2 !== 0
-							}">
-								<p class="text-2xl font-bold text-neutral-700">{{ hour.weekdays }}</p>
-								<p>{{ hour.hour }}</p>
-							</div>
-						}
-					</div>
-
-				</div>
-			}
-		</div>
-	}
-</section>
+} @else {
+	<p class="text-center text-neutral-600 font-bold mt-4">
+		Nenhum resultado encontrado
+	</p>
+}
